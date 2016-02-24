@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+		
+		
+<aop:aspectj-autoproxy/>
+
+<context:annotation-config/>
+<context:component-scan base-package="reparacion"/>
+
+<!-- 	<bean id="operaciones" class="reparacion.Operaciones" /> -->
+<!--     <bean id="taller" class="reparacion.Taller" /> -->
+    
+    
+<!--     <aop:config> -->
+<!--         <aop:pointcut id="operacionreparacion" -->
+<!--               expression="execution(* reparacion.Taller.arreglarCoche(..))" /> -->
+<!--         <aop:pointcut id="operacionreparacionArgs" -->
+<!--               expression="execution(* reparacion.Taller.arreglarCoche(java.lang.String,java.lang.String))  and args(matricula,cliente)" /> -->
+              
+<!--         <aop:aspect ref="operaciones"> -->
+<!--             <aop:before method="comprobarCliente" pointcut-ref="operacionreparacionArgs" arg-names="matricula,cliente"/> -->
+<!--             <aop:before method="asignarCita" pointcut-ref="operacionreparacionArgs" arg-names="matricula,cliente"/> -->
+            
+<!--             <aop:after-returning method="emitirFactura" pointcut-ref="operacionreparacionArgs" arg-names="matricula,cliente"/> -->
+<!--             <aop:after-returning method="guardarHistorial" pointcut-ref="operacionreparacionArgs" arg-names="matricula,cliente"/> -->
+<!--             <aop:after-returning method="encuestaCliente" pointcut-ref="operacionreparacionArgs" arg-names="matricula,cliente"/> -->
+            
+<!--             <aop:after-throwing method="devolucionPieza" pointcut-ref="operacionreparacion" throwing="ex"/> -->
+            
+<!--             <aop:after method="recogerCoche" pointcut-ref="operacionreparacionArgs" arg-names="matricula,cliente"/> -->
+<!--         </aop:aspect> -->
+<!--     </aop:config> -->
+    
+</beans>

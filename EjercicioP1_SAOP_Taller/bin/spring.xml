@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="operaciones" class="reparacion.Operaciones" />
+    <bean id="taller" class="reparacion.Taller" />
+    
+    <aop:config>
+        <aop:pointcut id="operacionreparacion"
+              expression="execution(* reparacion.Taller.arreglarCoche(..))" />
+              
+        <aop:aspect ref="operaciones">
+<!--             <aop:around method="medirTiempo" pointcut-ref="operacionreparacion" /> -->
+            
+            <aop:before method="comprobarCliente" pointcut-ref="operacionreparacion"/>
+            <aop:before method="asignarCita" pointcut-ref="operacionreparacion"/>
+            
+           
+            <aop:after-returning method="emitirFactura" pointcut-ref="operacionreparacion"/>
+            <aop:after-returning method="guardarHistorial" pointcut-ref="operacionreparacion" />
+            <aop:after-returning method="encuestaCliente" pointcut-ref="operacionreparacion" />
+            
+            <aop:after-throwing method="devolucionPieza" pointcut-ref="operacionreparacion" throwing="ex" />
+            
+             <aop:after method="recogerCoche" pointcut-ref="operacionreparacion" />
+            
+            
+        </aop:aspect>
+    </aop:config>
+    
+</beans>
